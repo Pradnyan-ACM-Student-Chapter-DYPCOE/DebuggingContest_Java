@@ -39,6 +39,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
         return list.size();
     }
 
+
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         private TextView tvTodoId, tvTodoText;
@@ -48,6 +49,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
             super(itemView);
             tvTodoText = itemView.findViewById(R.id.tvTodoText);
             btnDelete = itemView.findViewById(R.id.btnDelete);
+            tvTodoId = itemView.findViewById(R.id.tvTodoId);
 
             btnDelete.setOnClickListener(this);
         }
@@ -56,6 +58,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
         public void onClick(View v) {
             if(getAdapterPosition() != RecyclerView.NO_POSITION){
                 mListener.onDeleteClick(getAdapterPosition());
+
             }
         }
     }

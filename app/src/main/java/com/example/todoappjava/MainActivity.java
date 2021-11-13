@@ -41,12 +41,19 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnIte
 
     private void addTodo() {
         String text = etTodo.getText().toString();
-        boolean isSuccess = myDB.insertData(text);
-        if(isSuccess){
-            Toast.makeText(this, "Todo added successfully!", Toast.LENGTH_SHORT).show();
-            loadTodos();
-        } else {
-            Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+        // to do wont be added if text field is empty
+        if (text.length() !=0) {
+            boolean isSuccess = myDB.insertData(text);
+            if (isSuccess) {
+                Toast.makeText(this, "Todo added successfully!", Toast.LENGTH_SHORT).show();
+                etTodo.setText("");
+                loadTodos();
+            } else {
+                Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show();
+            }
+        }
+        else{
+            Toast.makeText(this, "Please enter text", Toast.LENGTH_SHORT).show();
         }
     }
 
@@ -57,14 +64,18 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnIte
             if (cursor.moveToFirst()) {
                 String todoText;
                 int todoId;
-                do {
+                // Solved id+1 bug which was repeating the inserted items
+                todoList.clear();
+                while (cursor.moveToNext()) {
                     todoId = cursor.getInt(cursor.getColumnIndex(DatabaseHelper.TODO_ID));
                     todoText = cursor.getString(cursor.getColumnIndex(DatabaseHelper.TODO_TEXT));
                     todoList.add(new TodoData(todoId, todoText));
-                } while (cursor.moveToNext());
+                }
             }
             cursor.close();
+
             todoAdapter.notifyDataSetChanged();
+
         }
     }
 
@@ -77,7 +88,10 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnIte
     @Override
     public void onDeleteClick(int position) {
         String itemIdToDelete = String.valueOf(todoList.get(position).getId());
-        Toast.makeText(this, "This item should be deleted "+itemIdToDelete, Toast.LENGTH_SHORT).show();
+        // added delete function
+        myDB.deleteRecord(itemIdToDelete);
         loadTodos();
+        Toast.makeText(this, "This item should be deleted "+itemIdToDelete, Toast.LENGTH_SHORT).show();
+
     }
 }
