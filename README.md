@@ -6,7 +6,7 @@
 2. Clone that repo to your local machine
 3. Pull the latest code (containing bugged code)
 4. Start Debugging
-5. Try to add comments for each big fix ypu've done.
+5. Try to add comments for each big fix you've done.
 6. Commit & Push the final code before deadline
 
 #### Steps after submission:
