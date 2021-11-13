@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Todo App Java</string>
+    <string name="_1">1</string>
+    <string name="some_todo_text">Some Todo Text</string>
 </resources>
