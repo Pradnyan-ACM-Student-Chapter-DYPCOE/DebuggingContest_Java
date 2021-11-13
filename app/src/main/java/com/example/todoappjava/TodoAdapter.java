@@ -49,6 +49,7 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
             super(itemView);
             tvTodoText = itemView.findViewById(R.id.tvTodoText);
             btnDelete = itemView.findViewById(R.id.btnDelete);
+            // to do id linked to textview
             tvTodoId = itemView.findViewById(R.id.tvTodoId);
 
             btnDelete.setOnClickListener(this);
