@@ -45,6 +45,7 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnIte
         if(isSuccess){
             Toast.makeText(this, "Todo added successfully!", Toast.LENGTH_SHORT).show();
             loadTodos();
+            etTodo.getText().clear();    // Text is now clearing in edit text after successful save
         } else {
             Toast.makeText(this, "Something went wrong!", Toast.LENGTH_SHORT).show();
         }
@@ -69,7 +70,7 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnIte
     }
 
     private void initViews() {
-        rvTodos = findViewById(R.id.rvTodos);
+        rvTodos = findViewById(R.id.tvTodoText);
         etTodo = findViewById(R.id.etTodo);
         btnAddTodo = findViewById(R.id.btnAddTodo);
     }
