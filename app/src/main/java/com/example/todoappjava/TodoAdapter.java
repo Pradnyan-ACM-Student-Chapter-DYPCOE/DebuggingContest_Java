@@ -41,13 +41,14 @@ public class TodoAdapter extends RecyclerView.Adapter<TodoAdapter.ViewHolder> {
 
     class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        private TextView tvTodoId, tvTodoText;
-        private ImageButton btnDelete;
+        private final TextView tvTodoId;
+        private final TextView tvTodoText;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvTodoText = itemView.findViewById(R.id.tvTodoText);
-            btnDelete = itemView.findViewById(R.id.btnDelete);
+            tvTodoId= itemView.findViewById(R.id.tvTodoId);    // Id is corrected.
+            ImageButton btnDelete = itemView.findViewById(R.id.btnDelete);
 
             btnDelete.setOnClickListener(this);
         }
