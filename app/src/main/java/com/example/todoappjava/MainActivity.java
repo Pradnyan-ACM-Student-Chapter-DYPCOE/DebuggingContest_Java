@@ -9,6 +9,7 @@ import android.database.Cursor;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.todoappjava.db.DatabaseHelper;
@@ -57,7 +58,7 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnIte
         }
     }
 
-    @SuppressLint("NotifyDataSetChanged")
+    @SuppressLint({"NotifyDataSetChanged", "SetTextI18n"})
     private void loadTodos() {
         Cursor cursor = myDB.getAllData();
         if(cursor!=null){
@@ -75,8 +76,17 @@ public class MainActivity extends AppCompatActivity implements TodoAdapter.OnIte
             cursor.close();
 
             todoAdapter.notifyDataSetChanged();
+            if(todoList.isEmpty()){
+                TextView nulltext = (TextView)findViewById(R.id.nullText);
+                nulltext.setText("seems like you dont have any TODO yet please add Some.");
+            }
+            else {
+                TextView nulltext = (TextView) findViewById(R.id.nullText);
+                nulltext.setText("");
+            }
 
         }
+
     }
 
     private void initViews() {
